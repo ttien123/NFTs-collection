@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import WalletProvider from "@/Providers/WalletProvider/WalletProvider";
+import { headers } from "next/headers";
+import HeaderMainLayout from "@/components/HeaderMainLayout";
+import NextTopLoader from "nextjs-toploader";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,12 +28,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookie = headers().get("cookie");
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <NextTopLoader showSpinner={false} color="#e5e7eb" />
+        <WalletProvider cookie={cookie}>
+          <ScrollToTop />
+          <HeaderMainLayout />
+          {children}
+        </WalletProvider>
       </body>
     </html>
   );
