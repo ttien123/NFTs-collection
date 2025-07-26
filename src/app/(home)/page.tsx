@@ -1,6 +1,19 @@
 import collectionsApi from "@/apis/collections.api";
 import { CollectionType } from "@/types/collection.type";
 import ListCollections from "./ListCollectons/ListCollections";
+import { Metadata } from "next";
+import { baseOpenGraph } from "@/shared-metadata";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    openGraph: {
+      ...baseOpenGraph,
+    },
+    alternates: {
+      canonical: "/",
+    },
+  };
+}
 
 const page = async () => {
   let collectionsData: CollectionType[] = [];
