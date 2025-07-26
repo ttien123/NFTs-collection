@@ -16,13 +16,13 @@ A modern Next.js-based NFT marketplace application that allows users to browse N
 
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS + shadcn/ui
+- **Styling**: Tailwind CSS
 - **Web3**: Wagmi + RainbowKit + Viem + ethers
 - **State Management**: Zustand stores
 - **Data Fetching**: TanStack Query (React Query)
 - **HTTP Client**: Axios
 - **Form Handling**: React Hook Form + Zod validation
-- **UI Components**: Radix UI primitives
+- **UI Components**: ShadcnUI
 
 ## 📋 Prerequisites
 
@@ -44,31 +44,20 @@ git clone https://github.com/ttien123/NFTs-collection.git
 
 ```bash
 npm install
-# or
-yarn install
-# or
-pnpm install
-# or
-bun install
+
 ```
 
-### 3. Environment Configuration
-
-### 4. Run the Development Server
+### 3. Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-### 5. Open Your Browser
+### 4. Open Your Browser
 
 Navigate to [http://localhost:3000](http://localhost:3000) to view the application.
+
+> **Note:** When you enter a collection detail page (the home page as required by the test), you may see no NFTs displayed. This is because the Magic Eden API does not return data for some collections. If this happens, please go back and select a different collection to view its NFTs.
 
 ## 🧪 Testing Wallet Connection and Fake Transactions
 
@@ -78,7 +67,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the applicati
 2. **Connect Wallet**: Click the "Connect Wallet" button in the header
 3. **Select Wallet**: Choose your preferred wallet (MetaMask, WalletConnect, etc.)
 4. **Switch to Holesky Testnet**:
-   - Click on the network dropdown in your wallet
+   - Click on the network button
    - Select "Holesky" testnet from the list
    - If Holesky is not available, add it manually with:
      - Network Name: Holesky
@@ -92,10 +81,12 @@ Navigate to [http://localhost:3000](http://localhost:3000) to view the applicati
 
 1. **Navigate to Collection**: Click on any NFT collection from the homepage
 2. **View Transaction History**: Scroll down to see the transaction history section
-   The application displays transaction data including:
+
    - Buyer and seller addresses
    - Transaction amounts in ETH
    - Historical transaction records
+
+   > **Note:** The first time you visit, there may be no transaction history displayed. Please perform a purchase transaction for an NFT,  after that the transaction history will be updated and shown in this section.
 
 ### Testing Favorites Feature
 

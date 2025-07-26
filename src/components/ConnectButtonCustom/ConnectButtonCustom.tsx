@@ -54,7 +54,7 @@ const ConnectButtonCustom: FC<{
                         >
                           Connect Wallet
                         </div>
-                        <div className="block md:hidden">
+                        <div className=" md:hidden w-[53px] h-[37px] flex items-center justify-center rounded-lg border border-white transition-colors duration-200 hover:bg-[#09090B] text-white">
                           <IconWallet />
                         </div>
                       </div>
@@ -125,7 +125,7 @@ const ConnectButtonCustom: FC<{
                     <button
                       onClick={openAccountModal}
                       type="button"
-                      className="w-[53px] h-[37px] flex items-center justify-center rounded-lg border border-white transition-colors duration-200 hover:bg-[#09090B] text-white"
+                      className="w-[53px] h-[37px] flex items-center justify-center rounded-lg border border-white transition-colors duration-200 bg-[#5569ff] text-white"
                     >
                       <IconWallet />
                     </button>
