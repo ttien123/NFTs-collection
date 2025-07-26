@@ -3,6 +3,7 @@ import Nodata from "@/components/Nodata";
 import { Card, CardContent } from "@/components/ui/card";
 import useCollectionStore from "@/stores/collection.store";
 import { CollectionType } from "@/types/collection.type";
+import defaultImage from "@/assets/images/default-image.webp";
 import Image from "next/image";
 import Link from "next/link";
 import React, { FC } from "react";
@@ -24,7 +25,7 @@ const ListCollections: FC<{
               <div className="relative aspect-[4/3] overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
                 <Image
-                  src={collection.image}
+                  src={collection.image || defaultImage.src}
                   alt={collection.name}
                   fill
                   className="object-cover transform group-hover:scale-110 transition-transform duration-500"

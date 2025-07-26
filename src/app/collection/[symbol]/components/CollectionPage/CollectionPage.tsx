@@ -13,6 +13,7 @@ import { useMemo, useState } from "react";
 import { TypePriceSchema } from "@/utils/rules";
 import { QueryConfig } from "@/types/utils.type";
 import useCollectionStore from "@/stores/collection.store";
+import defaultImage from "@/assets/images/default-image.webp";
 
 export default function CollectionPage() {
   const params = useParams<{ symbol?: string }>();
@@ -89,7 +90,7 @@ export default function CollectionPage() {
               <Card className="overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="relative aspect-square">
                   <Image
-                    src={nft.token.image}
+                    src={nft.token.image || defaultImage.src}
                     alt={nft.token.name}
                     fill
                     className="object-cover"

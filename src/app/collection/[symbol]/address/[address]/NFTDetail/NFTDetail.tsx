@@ -21,7 +21,6 @@ import {
   DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import ImageProduct from "../../../components/ImageProduct/ImageProduct";
 import HistoryTransaction from "../../../components/HistoryTransaction/HistoryTransaction";
@@ -32,12 +31,16 @@ import { useAccount } from "wagmi";
 import ConnectButtonCustom from "@/components/ConnectButtonCustom/ConnectButtonCustom";
 import { sellerAddress } from "@/constants/preSellerAddress";
 import ModalStep, { MODAL_STEP } from "@/components/ModalStep/ModalStep";
+import useTransactionHistoryStore from "@/stores/transactionHistory.store";
+import defaultImage from "@/assets/images/default-image.webp";
 
 const NFTDetail = () => {
   const { nftSelected, collectionSelected } = useCollectionStore();
   const { favoriteList, setFavoriteList } = useGetFavoriteList();
+  const { transactionInfo, setTransactionInfo } = useTransactionHistoryStore();
   const [stepModal, setStepModal] = useState<MODAL_STEP>(MODAL_STEP.READY);
   const [messageSignContract, setMessageSignContract] = useState<string>("");
+  const [txHash, setTxHash] = useState<string>("");
 
   const { isConnected, address } = useAccount();
 
@@ -69,7 +72,18 @@ const NFTDetail = () => {
       });
       await tx.wait();
       setStepModal(MODAL_STEP.SUCCESS);
+      setTxHash(tx.hash);
       setMessageSignContract("Transaction successful!");
+      setTransactionInfo([
+        ...transactionInfo,
+        {
+          hash: tx.hash,
+          from: tx.from,
+          to: tx.to || "",
+          value: ethers.formatEther(tx.value),
+          addressNft: nftSelected?.token.tokenAddress || "",
+        },
+      ]);
     } catch (error) {
       console.log("Error confirming purchase:", error);
       setMessageSignContract("Transaction failed. Please try again.");
@@ -84,7 +98,9 @@ const NFTDetail = () => {
         <Card>
           <CardContent className="p-2">
             <div className="relative aspect-square rounded-lg overflow-hidden">
-              <ImageProduct src={nftSelected?.token.image || ""} />
+              <ImageProduct
+                src={nftSelected?.token.image || defaultImage.src}
+              />
             </div>
           </CardContent>
         </Card>
@@ -218,22 +234,18 @@ const NFTDetail = () => {
                     {nftSelected?.token.price} ETH
                   </DialogDescription>
                 </DialogHeader>
-                <div className="grid gap-4 py-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="wallet">Wallet Address</Label>
-                    <Input
-                      id="wallet"
-                      placeholder="Enter your wallet address"
-                      defaultValue={address}
-                      readOnly
-                    />
+                <div className="grid gap-2 py-4">
+                  <div className="flex items-center gap-2">
+                    <Label className="w-24">Seller:</Label>
+                    <span>{truncateAddress(sellerAddress, 6)}</span>
                   </div>
-                  <div className="space-y-2">
-                    <Label>Amount</Label>
-                    <div className="flex items-center gap-2">
-                      <Input value={nftSelected?.token.price} readOnly />
-                      <span>ETH</span>
-                    </div>
+                  <div className="flex items-center gap-2">
+                    <Label className="w-24">Buyer:</Label>
+                    <span>{truncateAddress(address || "", 6)}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Label className="w-24">Amount:</Label>
+                    <span>{nftSelected?.token.price} ETH</span>
                   </div>
                 </div>
                 <DialogFooter>
@@ -267,6 +279,7 @@ const NFTDetail = () => {
         setOpen={setStepModal}
         contentStep={messageSignContract}
         statusStep={stepModal}
+        txHash={txHash}
       />
     </div>
   );

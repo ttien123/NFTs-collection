@@ -24,12 +24,3 @@ export interface CollectionDetailListConfig {
   sort_direction?: "asc" | "desc";
 }
 
-export interface favoriteNftType {
-  tokenAddress?: string;
-  price?: number;
-  owner?: string;
-  name?: string;
-  image?: string;
-  description?: string;
-  collectionName?: string;
-}

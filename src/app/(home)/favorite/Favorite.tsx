@@ -4,6 +4,8 @@ import { Card } from "@/components/ui/card";
 import useGetFavoriteList from "@/stores/favorite.store";
 import { Heart } from "lucide-react";
 import Nodata from "@/components/Nodata";
+import defaultImage from "@/assets/images/default-image.webp";
+
 const Favorite = () => {
   const { favoriteList, setFavoriteList } = useGetFavoriteList();
 
@@ -28,7 +30,7 @@ const Favorite = () => {
             <div className="relative aspect-[4/3] overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
               <Image
-                src={nft?.image || ""}
+                src={nft?.image || defaultImage.src}
                 alt={nft?.description || ""}
                 fill
                 className="object-cover transform group-hover:scale-110 transition-transform duration-500"

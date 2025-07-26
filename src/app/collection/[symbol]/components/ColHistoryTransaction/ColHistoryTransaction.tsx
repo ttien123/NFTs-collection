@@ -1,25 +1,28 @@
 "use client";
-import { HistoryTransaction } from "@/apis/mock";
 import { ColumnDef } from "@tanstack/react-table";
 import { truncateAddress } from "@/lib/utils";
+import { TransactionInfo } from "@/stores/transactionHistory.store";
 
-export const ColHistoryTransaction: ColumnDef<HistoryTransaction>[] = [
+export const ColHistoryTransaction: ColumnDef<TransactionInfo>[] = [
   {
-    accessorKey: "buyer",
+    accessorKey: "from",
     header: "Buyer",
     cell: ({ row }) => {
-      return <div>{truncateAddress(row.getValue("buyer"), 6)}</div>;
+      return <div>{truncateAddress(row.getValue("from"), 6)}</div>;
     },
   },
   {
-    accessorKey: "seller",
+    accessorKey: "to",
     header: "Seller",
     cell: ({ row }) => {
-      return <div>{truncateAddress(row.getValue("seller"), 6)}</div>;
+      return <div>{truncateAddress(row.getValue("to"), 6)}</div>;
     },
   },
   {
-    accessorKey: "amount",
+    accessorKey: "value",
     header: "Amount",
+    cell: ({ row }) => {
+      return <div>{row.getValue("value")} ETH</div>;
+    },
   },
 ];

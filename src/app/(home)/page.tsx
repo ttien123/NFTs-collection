@@ -8,7 +8,6 @@ const page = async () => {
   try {
     const collectionList = await collectionsApi.getCollections();
     collectionsData = collectionList.data;
-    console.log("Collections fetched successfully:", collectionList);
   } catch (error) {
     console.log("Error fetching collections:", error);
     return <div>Something went wrong</div>;

@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-
+import defaultImage from "@/assets/images/default-image.webp";
 interface props {
   src: string;
 }
@@ -38,7 +38,7 @@ const ImageProduct = ({ src }: props) => {
         onMouseMove={handleZoom}
       >
         <img
-          src={src || ""}
+          src={src || defaultImage.src}
           alt={"Product Image"}
           className="absolute top-0 left-0 h-full w-full bg-white object-cover "
           ref={imageRef}

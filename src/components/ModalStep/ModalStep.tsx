@@ -4,6 +4,7 @@ import {
   AlertDialogContent,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { truncateAddress } from "@/lib/utils";
 import { AlertDialogTitle } from "@radix-ui/react-alert-dialog";
 import { X, XCircle, CheckCircle } from "lucide-react";
 
@@ -19,16 +20,23 @@ interface Props {
   setOpen: React.Dispatch<React.SetStateAction<MODAL_STEP>>;
   statusStep: MODAL_STEP | null;
   contentStep?: string;
+  txHash?: string;
   handleClose?: () => void;
 }
 
 interface PropsContent {
   content?: string;
+  txHash?: string;
   setOpen?: React.Dispatch<React.SetStateAction<MODAL_STEP>>;
   handleClose?: () => void;
 }
 
-const SuccessContent = ({ content, setOpen, handleClose }: PropsContent) => {
+const SuccessContent = ({
+  content,
+  setOpen,
+  handleClose,
+  txHash,
+}: PropsContent) => {
   return (
     <div className={`flex items-center justify-center gap-4 flex-col`}>
       <button
@@ -46,6 +54,19 @@ const SuccessContent = ({ content, setOpen, handleClose }: PropsContent) => {
         </div>
         {content || "Transaction successfully!"}
       </div>
+      {txHash && (
+        <div className="text-slate-700 dark:text-slate-200 text-center text-[14px] font-semibold">
+          <div>Transaction Hash: {truncateAddress(txHash, 6)}</div>
+          <a
+            href={`https://holesky.etherscan.io/tx/${txHash}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline hover:text-blue-600 transition-colors duration-200"
+          >
+            View on HoleSky Testnet
+          </a>
+        </div>
+      )}
     </div>
   );
 };
@@ -141,6 +162,7 @@ const ModalStep = ({
   setOpen,
   statusStep,
   contentStep,
+  txHash,
   handleClose,
 }: Props) => {
   return (
@@ -157,6 +179,7 @@ const ModalStep = ({
               setOpen={setOpen}
               content={contentStep}
               handleClose={handleClose}
+              txHash={txHash}
             />
           )}
           {statusStep === MODAL_STEP.FAILED && (
