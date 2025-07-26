@@ -77,49 +77,60 @@ const ConnectButtonCustom: FC<{
               }
 
               return (
-                <div style={{ display: "flex", gap: 12 }}>
-                  <button
-                    onClick={openChainModal}
-                    style={{ display: "flex", alignItems: "center" }}
-                    type="button"
-                    className="px-4 py-2 rounded-full bg-[#09090B] transition-colors duration-200 hover:bg-[#5569ff] text-white"
-                  >
-                    {chain.hasIcon && (
-                      <div
-                        style={{
-                          background: chain.iconBackground,
-                          width: 12,
-                          height: 12,
-                          borderRadius: 999,
-                          overflow: "hidden",
-                          marginRight: 4,
-                        }}
-                      >
-                        {chain.iconUrl && (
-                          <Image
-                            alt={chain.name ?? "Chain icon"}
-                            src={chain.iconUrl}
-                            style={{ width: 12, height: 12 }}
-                            width={12}
-                            height={12}
-                          />
-                        )}
-                      </div>
-                    )}
-                    {chain.name}
-                  </button>
+                <>
+                  <div className="hidden md:flex gap-3">
+                    <button
+                      onClick={openChainModal}
+                      style={{ display: "flex", alignItems: "center" }}
+                      type="button"
+                      className="px-4 py-2 rounded-full bg-[#09090B] transition-colors duration-200 hover:bg-[#5569ff] text-white"
+                    >
+                      {chain.hasIcon && (
+                        <div
+                          style={{
+                            background: chain.iconBackground,
+                            width: 12,
+                            height: 12,
+                            borderRadius: 999,
+                            overflow: "hidden",
+                            marginRight: 4,
+                          }}
+                        >
+                          {chain.iconUrl && (
+                            <Image
+                              alt={chain.name ?? "Chain icon"}
+                              src={chain.iconUrl}
+                              style={{ width: 12, height: 12 }}
+                              width={12}
+                              height={12}
+                            />
+                          )}
+                        </div>
+                      )}
+                      {chain.name}
+                    </button>
 
-                  <button
-                    onClick={openAccountModal}
-                    type="button"
-                    className="px-4 py-2 rounded-full bg-[#5569ff] transition-colors duration-200 hover:bg-[#09090B] text-white"
-                  >
-                    {account.displayName}
-                    {account.displayBalance
-                      ? ` (${account.displayBalance})`
-                      : ""}
-                  </button>
-                </div>
+                    <button
+                      onClick={openAccountModal}
+                      type="button"
+                      className="px-4 py-2 rounded-full bg-[#5569ff] transition-colors duration-200 hover:bg-[#09090B] text-white"
+                    >
+                      {account.displayName}
+                      {account.displayBalance
+                        ? ` (${account.displayBalance})`
+                        : ""}
+                    </button>
+                  </div>
+                  <div className="block md:hidden">
+                    <button
+                      onClick={openAccountModal}
+                      type="button"
+                      className="w-[53px] h-[37px] flex items-center justify-center rounded-lg border border-white transition-colors duration-200 hover:bg-[#09090B] text-white"
+                    >
+                      <IconWallet />
+                    </button>
+                  </div>
+                </>
               );
             })()}
           </div>

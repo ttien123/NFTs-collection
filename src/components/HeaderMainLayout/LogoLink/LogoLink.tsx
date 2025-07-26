@@ -98,7 +98,7 @@ const LogoLink = () => {
           />
         </svg>
 
-        <div className="flex flex-col">
+        <div className="hidden md:flex flex-col">
           <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
             ERC721
           </span>
