@@ -62,7 +62,7 @@ const Favorite = () => {
 
               <div className="space-y-1">
                 <p className="text-sm text-gray-400">Description</p>
-                <p className="text-white text-sm line-clamp-2">
+                <p className="text-white text-sm line-clamp-2 min-h-[40px]">
                   {nft?.description || "No description available"}
                 </p>
               </div>

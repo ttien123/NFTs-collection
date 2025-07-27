@@ -97,7 +97,7 @@ export default function CollectionPage() {
                   />
                 </div>
                 <CardContent className="p-4">
-                  <h3 className="text-lg font-semibold">{nft.token.name}</h3>
+                  <h3 className="text-lg font-semibold line-clamp-1 truncate">{nft.token.name}</h3>
                   <div className="mt-2 flex justify-between items-center">
                     <span className="text-sm text-muted-foreground">
                       {nft.token.price} ETH

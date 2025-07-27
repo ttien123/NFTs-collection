@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   const cookie = headers().get("cookie");
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
