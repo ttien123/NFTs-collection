@@ -50,7 +50,18 @@ const NFTDetail = () => {
       description: collectionSelected?.description || "",
       collectionName: collectionSelected?.name || "",
     };
-    setFavoriteList([...favoriteList, favoriteNft]);
+    const exists = favoriteList.some(
+      (item) => item.tokenAddress === favoriteNft.tokenAddress
+    );
+    if (exists) {
+      setFavoriteList(
+        favoriteList.filter(
+          (item) => item.tokenAddress !== favoriteNft.tokenAddress
+        )
+      );
+    } else {
+      setFavoriteList([...favoriteList, favoriteNft]);
+    }
   };
 
   const isFavorite = useMemo(() => {

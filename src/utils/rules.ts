@@ -14,7 +14,7 @@ export const PriceSchema = z
       if (data.min_price !== "" && data.max_price !== "") {
         return Number(data.max_price) >= Number(data.min_price);
       }
-      return data.min_price !== "" || data.max_price !== "";
+      return true
     },
     {
       message: "The price is not reasonable",

@@ -36,7 +36,7 @@ const SearchBar: FC<{
                 />
                 <button
                   aria-label="Search"
-                  className="rounded-sm py-2 px-6 flex-shink-0 hover:opacity-90"
+                  className="rounded-sm rounded-l-none py-2 px-6 flex-shink-0 group bg-pink-100 hover:bg-purple-100 transition-colors duration-200"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@ const SearchBar: FC<{
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6"
+                    className="w-6 h-6 text-pink-500 group-hover:text-purple-600 transition-colors duration-200"
                   >
                     <path
                       strokeLinecap="round"
